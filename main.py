@@ -62,7 +62,7 @@ tools = [
 
 #  用户请求
 messages = [
-    {"role": "system", "content": "你是"},
+    {"role": "system", "content": ""},
     {"role": "user", "content": "查找深圳的天气，然后用一句话告诉我出门要不要带伞"}
 ]
 
@@ -99,6 +99,6 @@ if message.tool_calls:
         ]
     )
 
-    print("💡 出门建议：", followup_response.choices[0].message.content)
+    print("出门建议：", followup_response.choices[0].message.content)
 else:
-    print("❌ 模型没有调用函数")
+    print("模型没有调用函数")
