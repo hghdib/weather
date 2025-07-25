@@ -7,13 +7,15 @@ client = OpenAI(
     base_url="https://api.deepseek.com"
 )
 
-#  增强模拟函数：支持中英文城市名
+#  增强模拟函数的鲁棒性：支持中英文和模糊城市名
 def get_weather(city: str) -> str:
     city_map = {
-        "shenzhen": "shenzhen",
-        "深圳": "shenzhen",
         "beijing": "beijing",
-        "北京": "beijing"
+        "bj": "beijing",
+        "北京": "beijing",
+        "shenzhen": "shenzhen",
+        "sz": "shenzhen",
+        "深圳": "shenzhen"
     }
 
     city_key = city.lower().strip()
@@ -62,7 +64,7 @@ tools = [
 
 #  用户请求
 messages = [
-    {"role": "system", "content": ""},
+    {"role": "system", "content": "你是一个聪明的助手"},
     {"role": "user", "content": "查找深圳的天气，然后用一句话告诉我出门要不要带伞"}
 ]
 
